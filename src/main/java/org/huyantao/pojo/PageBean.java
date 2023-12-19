@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * @author:deconglin
- * @date:2023-08-06-20:18
- * @description:
- */
+* @author:huyantao
+* @date:2023 12 19
+*/
 
 /*
 分页查询结果的封装类

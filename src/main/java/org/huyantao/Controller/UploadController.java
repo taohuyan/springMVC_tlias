@@ -11,10 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 /**
- * @author:deconglin
- * @date:2023-08-07-14:53
- * @description:
- */
+* @author:huyantao
+* @date:2023 12 19
+*/
 @Slf4j
 @RestController
 public class UploadController {
