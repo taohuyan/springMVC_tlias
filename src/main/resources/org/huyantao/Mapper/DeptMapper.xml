@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.huyantao.Mapper.DeptMapper">
+    <sql id="AllDept"> id,name,create_time,update_time </sql>
+
+    <insert id="InsertByName">
+        insert into dept(name,create_time,update_time) values(#{name},now(),now())
+    </insert>
+
+    <update id="UpdateById">
+        update dept set name = #{name},update_time = now() where id = #{id}
+    </update>
+
+    <select id="QueryAllList" resultType="org.huyantao.pojo.Dept">
+        select <include refid="AllDept"/> from dept
+    </select>
+
+    <select id="QueryById" resultType="org.huyantao.pojo.Dept">
+        select <include refid="AllDept"/> from dept where id= #{id}
+    </select>
+
+    <delete id="DeleteById">
+        delete from dept where id = #{id}
+    </delete>
+</mapper>
