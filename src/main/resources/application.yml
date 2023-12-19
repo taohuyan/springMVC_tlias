@@ -1,0 +1,4 @@
+#spring 管理事务
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager : debug
