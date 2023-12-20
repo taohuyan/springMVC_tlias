@@ -4,6 +4,7 @@ import org.huyantao.Mapper.DeptMapper;
 import org.huyantao.Mapper.EmpMapper;
 import org.huyantao.pojo.Dept;
 import org.huyantao.Service.*;
+import org.huyantao.pojo.DeptLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,8 @@ public class DeptServiceImpl implements DeptService {
     private DeptMapper deptMapper;
     @Autowired
     private EmpMapper empMapper;
+    @Autowired
+    private DeptLogService deptLogService;
 
     @Override
     public List<Dept> list() {
@@ -31,6 +34,7 @@ public class DeptServiceImpl implements DeptService {
     @Override
     public void delete(Integer id) throws Exception {
             //根据id删除部门
+        try {
             deptMapper.deleteById(id);
             //模拟：异常
 //            if(true){
@@ -38,6 +42,12 @@ public class DeptServiceImpl implements DeptService {
 //            }
 //            //根据部门id删除该部门下的员工
             empMapper.deleteByDeptId(id);
+        } finally {
+            DeptLog deptLog = new DeptLog();
+            deptLog.setCreateTime(LocalDateTime.now());
+            deptLog.setDescription("执行了解散部门的操作，此次解散的是"+id+"号的部门");
+            deptLogService.insert(deptLog);
+        }
     }
 
 
