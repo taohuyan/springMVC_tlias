@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.huyantao.Service.DeptService;
 import org.huyantao.pojo.Dept;
 import org.huyantao.pojo.Result;
+import org.huyantao.utils.aop.anno.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +46,7 @@ public class DeptController {
     删除部门数据
     @return
      */
+    @Log
     @DeleteMapping("/{id}")
     //声明变量接收路径参数Integer 以及接收路径参数的注解Pathvariable
     public Result delete(@PathVariable Integer id) throws Exception {
@@ -57,6 +59,7 @@ public class DeptController {
     /*
     增加部门
      */
+    @Log
     @PostMapping
     //接收数据部门名称
     public Result add(@RequestBody Dept dept){
@@ -74,6 +77,7 @@ public class DeptController {
         return Result.success(dept);
     }
 
+    @Log
     @PutMapping
     public Result update(@RequestBody Dept dept){
         log.info("修改部门为:{}",dept);

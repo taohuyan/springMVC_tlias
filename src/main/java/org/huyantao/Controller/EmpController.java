@@ -3,6 +3,7 @@ package org.huyantao.Controller;
 import org.huyantao.pojo.*;
 import org.huyantao.Service.EmpService;
 import lombok.extern.slf4j.Slf4j;
+import org.huyantao.utils.aop.anno.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,7 @@ public class EmpController {
 
 
     //批量删除
-
+    @Log
     @DeleteMapping("/{ids}")
     public Result delete(@PathVariable List<Integer> ids){
         log.info("批量删除操作，ids:{}",ids);
@@ -46,7 +47,7 @@ public class EmpController {
     }
 
     //新增
-
+    @Log
     @PostMapping
     public Result save(@RequestBody Emp emp){
         //记录日志
@@ -68,6 +69,7 @@ public class EmpController {
     }
 
     //实体类使用requestbody包装
+    @Log
     @PutMapping
     public Result update(@RequestBody Emp emp){
         log.info("更新员工为:{}",emp);
